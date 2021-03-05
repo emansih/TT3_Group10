@@ -4,13 +4,13 @@ const Balance = ({ data }) => {
     return (
         <div>
             <center><h1>Asset Balance</h1></center>
-            {/*{data.map((data) => (
-                <div>
-                    <h5>{data}</h5>
-                </div>
-            ))}*/}
+            { (data.length > 0) ? data.map( (dataReturned, index) => {
+                return (
+                    <div>{ dataReturned.assetBalance }</div>
+                )
+            }) : <div>Loading...</div>}
         </div>
     )
-};
+}
 
 export default Balance

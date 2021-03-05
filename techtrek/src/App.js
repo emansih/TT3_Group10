@@ -19,15 +19,11 @@ class App extends Component {
 
         fetch('https://849rs099m3.execute-api.ap-southeast-1.amazonaws.com/techtrek/balance', requestOptions)
             .then(res => res.json())
-            .then(json => json)
             .then(data => this.setState({ data: data }))
     }
   render() {
     return (
         <div className="App">
-            <script>
-                console.log(this.state.data)
-            </script>
             <Balance data={ this.state.data }/>
         </div>
     )
