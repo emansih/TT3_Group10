@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 
 import Login from './Login';
-import Dashboard from './Dashboard';
+import Dashboard from './dashboard';
 import Home from './Home';
 
 function App() {
