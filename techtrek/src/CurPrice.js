@@ -11,9 +11,7 @@ class CurPrice extends React.Component {
         }
         axios.post('https://849rs099m3.execute-api.ap-southeast-1.amazonaws.com/techtrek/pricing/current',{}, {headers: {'x-api-key': 'wvn4vaj9S24aI8OiWsddf5B1h5z0EjKQ41GnONBy'}})
         .then((response) => {
-            console.log(response)
             this.setState({ prices: response.data })
-            console.log(this.state.prices)
         })
         .catch((error) => {
             console.error(error)
@@ -21,11 +19,15 @@ class CurPrice extends React.Component {
     }
 
     render() {
-
+      var date = new Date(this.state.prices.timestamp * 1000)
+      var hours = date.getHours()
+      var minutes = "0" + date.getMinutes()
+      var seconds = "0" + date.getSeconds()
+      var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2)
         return (
             <div className="cur-price-list">
                 <h1 className="">Current TTK Price</h1>
-                <h2 className="cur-price-item">Time:{this.state.prices.timestamp}</h2>
+                <h2 className="cur-price-item">Time:{formattedTime}</h2>
                 <p className="cur-price-item">{this.state.prices.price} {this.state.prices.assetSymbol}</p>
             </div>
         )

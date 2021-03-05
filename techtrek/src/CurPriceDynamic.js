@@ -16,9 +16,7 @@ function CurPrice() {
         const interval = setInterval(() => {
             axios.post('https://849rs099m3.execute-api.ap-southeast-1.amazonaws.com/techtrek/pricing/current',{}, {headers: {'x-api-key': 'wvn4vaj9S24aI8OiWsddf5B1h5z0EjKQ41GnONBy'}})
         .then(res => {
-            console.log(res)
             setPrice(res.data)
-            console.log(price)
         })
         .catch((error) => {
             console.error(error)
