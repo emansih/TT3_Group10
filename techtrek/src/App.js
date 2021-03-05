@@ -18,13 +18,6 @@ import React, { useState } from "react"
 
 // }
 
-// POST Buy and sell amount
-// const buyAmount = () =>{
-//   setError(null)
-//   setLoading(true);
-//  // axios.post("https://849rs099m3.execute-api.ap-southeast-1.amazonaws.com/techtrek/transactions/add",
-//   {})
-// }
 
 
 // var amount = this.state.quantity;
@@ -61,6 +54,17 @@ function App() {
    
    
   }
+
+//   // POST Buy and sell amount
+//   const buyAmount = () =>{
+//   setError(null)
+//   setLoading(true);
+//  // axios.post("https://849rs099m3.execute-api.ap-southeast-1.amazonaws.com/techtrek/transactions/add",
+//   { accountkey : "9316ce4f-560c-4b02-bb5f-cc1ae9bab7ed", orderType : "BUY", assetAmount : fQty}, {
+    
+//   }).then(response =>)
+// }
+
 
   function Buy() {
     alert("You bought " + fqty);
