@@ -3,8 +3,6 @@ import axios from 'axios';
 import { setUserSession } from './Utils/Common';
 const dotenv = require('dotenv');
 
-console.log("wvn4vaj9S24aI8OiWsddf5B1h5z0EjKQ41GnONBy");
-
 function Login(props) {
   const username = useFormInput('');
   const password = useFormInput('');
@@ -28,7 +26,6 @@ function Login(props) {
       }
     }).then(response => {
       setLoading(false);
-      console.log(response.data.accountKey);
       setUserSession(response.data.accountKey, response.data.username);
       props.history.push('/dashboard');
     }).catch(error => {
