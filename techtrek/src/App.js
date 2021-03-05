@@ -1,33 +1,31 @@
-import './App.css';
-import React, { Component } from 'react';
-import Balance from './balance';
+import React from 'react';
+import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: []
-        }
-    }
-    componentDidMount() {
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'x-api-key': 'wvn4vaj9S24aI8OiWsddf5B1h5z0EjKQ41GnONBy' },
-            // TODO: Remove hardcoded account key
-            body: JSON.stringify({ accountKey: '9316ce4f-560c-4b02-bb5f-cc1ae9bab7ed' })
-        };
+import Login from './Login';
+import Dashboard from './Dashboard';
+import Home from './Home';
 
-        fetch('https://849rs099m3.execute-api.ap-southeast-1.amazonaws.com/techtrek/balance', requestOptions)
-            .then(res => res.json())
-            .then(data => this.setState({ data: data }))
-    }
-  render() {
+function App() {
     return (
         <div className="App">
-            <Balance data={ this.state.data }/>
+            <BrowserRouter>
+                <div>
+                    <div className="header">
+                        <NavLink exact activeClassName="active" to="/">Home</NavLink>
+                        <NavLink activeClassName="active" to="/login">Login</NavLink><small>(Access without token only)</small>
+                        <NavLink activeClassName="active" to="/dashboard">Dashboard</NavLink><small>(Access with token only)</small>
+                    </div>
+                    <div className="content">
+                        <Switch>
+                            <Route exact path="/" component={Home} />
+                            <Route path="/login" component={Login} />
+                            <Route path="/dashboard" component={Dashboard} />
+                        </Switch>
+                    </div>
+                </div>
+            </BrowserRouter>
         </div>
-    )
-  }
+    );
 }
 
-export default App
+export default App;
