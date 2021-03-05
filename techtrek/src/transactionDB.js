@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios';
 
 class TransactionTable extends Component {
     state = {
@@ -49,25 +50,23 @@ class TransactionTable extends Component {
             })
     
         }).catch(error => {
-          if (error.response.status === 400) setError(error.response.data.message);
-          else setError("Something went wrong. Please try again later.");
         });
     }
     Table = () => {
             return (
                 <div>
                 <table>
-                    <TableHeader />
-                    <TableBody />
+                    <this.TableHeader />
+                    <this.TableBody />
                 </table>
-                <button onClick={(retrieveTransactionData)}> Retrieve Transaction Data</button>
+                <button onClick={(this.retrieveTransactionData)}> Retrieve Transaction Data</button>
                 </div>
             )
     }
     render() {
         return (
             <div className="Container">
-                <Table />
+                <this.Table />
             </div>
 
         )
