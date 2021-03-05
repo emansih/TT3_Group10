@@ -1,6 +1,7 @@
 import React from 'react'
 
 const ApiCall = (dataToDisplay) => {
+
     return (
         <table>
             <thead>
@@ -11,8 +12,8 @@ const ApiCall = (dataToDisplay) => {
             </thead>
             <tbody>
             <tr>
-                <td>{ JSON.stringify(dataToDisplay.dataToDisplay.assetBalance) }</td>
-                <td>{ JSON.stringify(dataToDisplay.dataToDisplay.cashBalance) }</td>
+                <td>{ Math.round(JSON.stringify(dataToDisplay.dataToDisplay.assetBalance) * 100) / 100 }</td>
+                <td>{ Math.round(JSON.stringify(dataToDisplay.dataToDisplay.cashBalance) * 100) / 100 }</td>
             </tr>
 
             </tbody>
