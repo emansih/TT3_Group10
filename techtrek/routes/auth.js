@@ -11,7 +11,8 @@ const loginValidation = (data) => {
     })
 }
 router.post(server + '/login', (req, res) => {
-    res.send('Register');
+    const { error } = loginValidation(req.body);
+    if (error) return res.status(400).send(error[0].errorMessage);
 });
 
 module.exports = router;
