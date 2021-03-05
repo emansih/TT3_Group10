@@ -1,21 +1,14 @@
-<<<<<<< HEAD
 import './App.css';
-import Table from './transactionDB';
-=======
 import React from 'react';
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 
 import Login from './Login';
 import Dashboard from './Dashboard';
 import Home from './Home';
->>>>>>> origin/login
 
 function App() {
   return (
     <div className="App">
-<<<<<<< HEAD
-      <Table />
-=======
       <BrowserRouter>
         <div>
           <div className="header">
@@ -32,7 +25,6 @@ function App() {
           </div>
         </div>
       </BrowserRouter>
->>>>>>> origin/login
     </div>
   );
 }

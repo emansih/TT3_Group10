@@ -5,7 +5,7 @@ class TransactionTable extends Component {
         transactionData : [],
     }
 
-    tableHeader = () => {
+    TableHeader = () => {
         return (
             <thread>
                 <tr>
@@ -21,12 +21,22 @@ class TransactionTable extends Component {
     
         )
     }
-    tableBody = () => {
-        return (
-            <tr>
-                <td></td>
-            </tr>
-        )
+    TableBody = () => {
+        const { transactionData } = this.state;
+        const rows = transactionData.map((row, index) => {
+            return (
+                <tr key = {index}>
+                    <td>row.transactionId</td>
+                    <td>row.orderType</td>
+                    <td>row.timestamp</td>
+                    <td>row.assetSymbol</td>
+                    <td>row.assetAmount</td>
+                    <td>row.assetPrice</td>
+                    <td>row.cashAmount</td>
+                </tr>
+            )
+        })
+        return <tbody>{rows}</tbody>
     }
     retrieveTransactionData() {
         axios.post('https://849rs099m3.execute-api.ap-southeast-1.amazonaws.com/techtrek/transactions/view', { accountKey: '9316ce4f-560c-4b02-bb5f-cc1ae9bab7ed'}, {
@@ -35,9 +45,8 @@ class TransactionTable extends Component {
           }
         }).then(response => {
             this.setState({
-    
+                transactionData : response.data,
             })
-            console.log(response.data.transactionId);
     
         }).catch(error => {
           if (error.response.status === 400) setError(error.response.data.message);
@@ -49,13 +58,13 @@ class TransactionTable extends Component {
                 <div>
                 <table>
                     <TableHeader />
+                    <TableBody />
                 </table>
                 <button onClick={(retrieveTransactionData)}> Retrieve Transaction Data</button>
                 </div>
             )
     }
     render() {
-        const { transactionData } = this.state; 
         return (
             <div className="Container">
                 <Table />
@@ -64,7 +73,5 @@ class TransactionTable extends Component {
         )
     }
 }
-
-
 
 export default TransactionTable
