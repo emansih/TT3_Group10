@@ -1,4 +1,5 @@
 import React from 'react'
+
 const ApiCall = (dataToDisplay) => {
     return (
         <table>
@@ -9,12 +10,11 @@ const ApiCall = (dataToDisplay) => {
             </tr>
             </thead>
             <tbody>
-            {
-                <tr>
-                    <td>{ dataToDisplay.assetBalance }</td>
-                    <td>{ dataToDisplay.cashBalance }</td>
-                </tr>
-            }
+            <tr>
+                <td>{ JSON.stringify(dataToDisplay.dataToDisplay.assetBalance) }</td>
+                <td>{ JSON.stringify(dataToDisplay.dataToDisplay.cashBalance) }</td>
+            </tr>
+
             </tbody>
         </table>
     );
