@@ -8,6 +8,7 @@ import { getToken, removeUserSession, setUserSession } from './Utils/Common';
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setLoading] = useState(true);
 
   const checkLoggedIn = () => {
     if (getToken() === null) {
@@ -20,49 +21,57 @@ function App() {
 
   useEffect(() => {
     checkLoggedIn();
-  })
+    setLoading(false);
+  }, [isLoading])
 
-  if (!isLoggedIn) {
-    return (
-      <div className="App">
-        <BrowserRouter>
-          <div>
-            <div className="header">
-              <NavLink exact activeClassName="active" to="/">Home</NavLink>
-              <NavLink activeClassName="active" to="/login">Login</NavLink><small>(Access without token only)</small>
-            </div>
-            <div className="content">
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/login" component={Login} />
-              </Switch>
-            </div>
-          </div>
-        </BrowserRouter>
-      </div>
-    );
-  } else {
-    return (
-      <div className="App">
-        <BrowserRouter>
-          <div>
-            <div className="header">
-              <NavLink exact activeClassName="active" to="/">Home</NavLink>
-              <NavLink activeClassName="active" to="/dashboard">Dashboard</NavLink><small>(Access with token only)</small>
-            </div>
-            <div className="content">
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/dashboard" component={Dashboard} />
-              </Switch>
-            </div>
-          </div>
-        </BrowserRouter>
-      </div>
-    )
+  // if (!isLoggedIn) {
 
-  }
+  return (
+
+    <div className='App'>
+      {isLoading ? (
+        <div> Still loading </div>
+      ) : (<BrowserRouter>
+        <div>
+          <div className='header'>
+            <NavLink exact activeClassName='active' to='/'>
+              Home
+              </NavLink>
+            {isLoggedIn ? (
+              <>
+                <NavLink activeClassName='active' to='/dashboard'>
+                  Dashboard
+                  </NavLink>
+                <small>(Access with token only)</small>
+              </>
+            ) : (
+              <>
+                <NavLink activeClassName='active' to='/login'>
+                  Login
+                  </NavLink>
+                <small>(Access without token only)</small>
+              </>
+            )}
+          </div>
+          <div className='content'>
+            <Switch>
+              <Route exact path='/' component={Home} />
+              {isLoggedIn ? (
+                <Route path='/dashboard' component={Dashboard} />
+              ) : (
+                <Route path='/login' component={Login} />
+              )}
+            </Switch>
+          </div>
+        </div>
+      </BrowserRouter>)}
+
+
+    </div>
+  );
+
 
 }
+
 
 export default App;
