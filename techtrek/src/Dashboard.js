@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { getUser, removeUserSession } from './Utils/Common';
 import CurPrice from './CurPriceDynamic';
 import ApiCall from './ApiCall';
+import Lucas from './Lucas';
 
 class Dashboard extends React.Component {
 
@@ -28,6 +29,7 @@ class Dashboard extends React.Component {
     };
 
     render(props) {
+
         const username = getUser();
         // handle click event of logout button
         const handleLogout = () => {
@@ -41,6 +43,7 @@ class Dashboard extends React.Component {
                     <ApiCall dataToDisplay={this.state.dataToDisplay} />
                 </div>
                 <div><CurPrice /></div>
+                <div> <Lucas></Lucas> </div>
                 <input type="button" onClick={handleLogout} value="Logout" />
             </div >
         );
